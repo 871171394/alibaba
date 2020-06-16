@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.hhf.domain.Order;
 import com.hhf.domain.Product;
 import com.hhf.service.OrderService;
+import com.hhf.service.ProductService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.client.ServiceInstance;
@@ -27,7 +28,66 @@ public class OrderController {
 
     private DiscoveryClient discoveryClient;
 
-    // 下单--自定义负载均衡
+    private ProductService productService;
+    /**
+     * 下单--自定义负载均衡
+     */
+    @RequestMapping("/order/prod/{pid}")
+    public Order order(@PathVariable("pid") Integer pid){
+        log.info("接受到{}号商品的下单请求,接下来调用商品微服务查询此商品信息",pid);
+
+        Product product = productService.findByPid(pid);
+        log.info("查询到{}号商品的信息，内容是{}",pid, JSON.toJSONString(product));
+        // 模拟一次网络延时
+        try {
+            Thread.sleep(1000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Order order=new Order();
+        order.setUid(1);
+        order.setUsername("测试用户");
+
+        order.setPid(pid);
+        order.setPname(product.getPname());
+        order.setPprice(product.getPprice());
+        order.setNumber(1);
+        //下单（创建订单）
+        //orderService.createOrder(order);
+
+        log.info("创建订单成功，订单信息为{}",JSON.toJSONString(order));
+        return order;
+    }
+
+
+    /**
+     * 下单--自定义负载均衡
+     */
+    /*@RequestMapping("/order/prod/{pid}")
+    public Order order(@PathVariable("pid") Integer pid){
+        log.info("接受到{}号商品的下单请求,接下来调用商品微服务查询此商品信息",pid);
+
+        Product product = restTemplate.getForObject("http://service-product/product/"+pid, Product.class);
+        log.info("查询到{}号商品的信息，内容是{}",pid, JSON.toJSONString(product));
+
+        Order order=new Order();
+        order.setUid(1);
+        order.setUsername("测试用户");
+
+        order.setPid(pid);
+        order.setPname(product.getPname());
+        order.setPprice(product.getPprice());
+        order.setNumber(1);
+        //下单（创建订单）
+        orderService.createOrder(order);
+
+        log.info("创建订单成功，订单信息为{}",JSON.toJSONString(order));
+        return order;
+    }*/
+
+    /**
+     * 下单--自定义负载均衡
+     *//*
     @RequestMapping("/order/prod/{pid}")
     public Order order(@PathVariable("pid") Integer pid){
         log.info("接受到{}号商品的下单请求,接下来调用商品微服务查询此商品信息",pid);
@@ -54,7 +114,7 @@ public class OrderController {
 
         log.info("创建订单成功，订单信息为{}",JSON.toJSONString(order));
         return order;
-    }
+    }*/
 
     /*@RequestMapping("/order/prod/{pid}")
     public Order order(@PathVariable("pid") Integer pid){

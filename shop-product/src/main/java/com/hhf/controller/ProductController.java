@@ -5,6 +5,7 @@ import com.hhf.domain.Product;
 import com.hhf.service.ProductService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +20,7 @@ public class ProductController {
     /**
      * 商品信息查询
      */
-    @RequestMapping("/product/{pid}")
+    @GetMapping("/product/{pid}")
     public Product product(@PathVariable("pid")Integer pid){
         log.info("接下来要进行{}号商品的信息查询",pid);
         Product product=productService.findByPid(pid);
