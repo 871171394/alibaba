@@ -25,6 +25,11 @@ spring:
       transport:
         port: 9999
         dashboard: localhost:8080
+# get请求变成post请求时加上
+feign:
+  httpclient:
+    enabled: true
+
 # 调用的提供者的名称
 service-product:
   ribbon:

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
+ * 动态配置文件
  * @author Huang.Hua.Fu
  * @date 2020/6/19 9:26
  */

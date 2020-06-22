@@ -6,13 +6,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 /**
  * 用户
  */
 @Entity(name = "shop_user")
 @Data
-public class User {
+public class User implements Serializable {
+
+    private static final long serialVersionUID = 2613439157031959833L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer uid;//主键    
