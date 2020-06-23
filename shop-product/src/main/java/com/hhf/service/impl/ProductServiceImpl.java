@@ -24,7 +24,6 @@ public class ProductServiceImpl implements ProductService {
         if (product.getStock()<num){
             throw new RuntimeException("库存不足");
         }
-        int i=1/0;
         product.setStock(product.getStock()-num);
         productDao.save(product);
     }
@@ -48,8 +47,14 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public MultipartFile uploadPicture(MultipartFile multipartFile) {
+    public User uploadPicture(MultipartFile multipartFile) {
         System.out.println("文件上传！ 文件："+multipartFile);
-        return multipartFile;
+        User user=new User();
+        user.setUid(1);
+        user.setUsername("上传文件");
+        user.setPassword("上传");
+        user.setTelephone("a487489");
+
+        return user;
     }
 }

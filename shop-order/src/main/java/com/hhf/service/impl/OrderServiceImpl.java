@@ -7,6 +7,7 @@ import com.hhf.domain.Order;
 import com.hhf.domain.Product;
 import com.hhf.service.OrderService;
 import com.hhf.service.ProductService;
+import io.seata.spring.annotation.GlobalTransactional;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,7 @@ public class OrderServiceImpl implements OrderService {
 
 
     @Override
+    @GlobalTransactional
     public Order createOrder(Integer pid) {
         //1. 调用商品微服务，查询商品信息
         Product product = productService.findByPid(pid);

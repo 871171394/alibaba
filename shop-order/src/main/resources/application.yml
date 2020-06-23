@@ -1,36 +1,34 @@
-server:
-  port: 8091
-  tomcat:
-    max-threads: 5 #tomcat的最大并发值修改为10，默认是200
-spring:
-  application:
-    name: service-order
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql:///shop?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true
-    username: root
-    password: 123456
-  jpa:
-    properties:
-      hibernate:
-        hbm2ddl:
-          auto: update
-        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+#server:
+#  port: 8091
+#spring:
+#  application:
+#    name: service-order
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql:///shop?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true
+#    username: root
+#    password: 123456
+#  jpa:
+#    properties:
+#      hibernate:
+#        hbm2ddl:
+#          auto: update
+#        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
   #nacos配置
-  cloud:
-    nacos:
-      discovery:
-        server-addr: localhost:8848
-    sentinel:
-      transport:
-        port: 9999
-        dashboard: localhost:8080
-# get请求变成post请求时加上
-feign:
-  httpclient:
-    enabled: true
-
-# 调用的提供者的名称
-service-product:
-  ribbon:
-    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: localhost:8848
+#    sentinel:
+#      transport:
+#        port: 9999
+#        dashboard: localhost:8080
+## get请求变成post请求时加上
+#feign:
+#  httpclient:
+#    enabled: true
+#
+## 调用的提供者的名称
+#service-product:
+#  ribbon:
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule

@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: service-order
+  cloud:
+    nacos:
+      config:
+        server-addr: localhost:8848
+        file-extension: yaml #配置文件格式
+        shared-dataids: all-service.yaml # 要引入的配置
+        refreshable-dataids: all-service.yaml # 要实现动态配置刷新的配置
+    alibaba:
+      seata:
+        tx-service-group: ${spring.application.name}
+  profiles:
+    active: test #环境标识

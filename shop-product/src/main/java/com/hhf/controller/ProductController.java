@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @Slf4j
@@ -59,5 +60,10 @@ public class ProductController {
     public User jsonUser(@RequestBody User user){
         productService.jsonUser(user);
         return user;
+    }
+
+    @PostMapping(value =  "/product/file",consumes = "multipart/form-data")
+    public User uploadPicture(MultipartFile multipartFile) {
+        return productService.uploadPicture(multipartFile);
     }
 }

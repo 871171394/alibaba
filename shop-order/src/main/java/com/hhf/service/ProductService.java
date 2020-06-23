@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * @author Huang.Hua.Fu
@@ -43,4 +44,7 @@ public interface ProductService {
 
     @DeleteMapping("/product/user")
     User jsonUser(@RequestBody User user);
+
+    @PostMapping(value =  "/product/file",consumes = "multipart/form-data")
+    User uploadPicture(MultipartFile multipartFile);
 }

@@ -17,5 +17,5 @@ public interface ProductService {
 
     User jsonUser(User user);
 
-    MultipartFile uploadPicture(MultipartFile multipartFile);
+    User uploadPicture(MultipartFile multipartFile);
 }

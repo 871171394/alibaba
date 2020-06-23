@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Random;
@@ -35,11 +36,9 @@ public class OrderController {
 
     private OrderService orderService;
 
-    private DiscoveryClient discoveryClient;
-
     private ProductService productService;
 
-    @RequestMapping("/order/prod/{pid}")
+    @PostMapping("/order/prod/{pid}")
     public Order order(@PathVariable("pid") Integer pid){
         return orderService.createOrder(pid);
     }
@@ -60,6 +59,12 @@ public class OrderController {
     public User jsonUser(@RequestBody User user){
         User user1 = productService.jsonUser(user);
         return user1;
+    }
+
+    @PostMapping("/order/file")
+    public User uploadPicture(MultipartFile multipartFile){
+
+        return productService.uploadPicture(multipartFile);
     }
     /**
      * 下单--自定义负载均衡
