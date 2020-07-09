@@ -4,4 +4,5 @@ import com.hhf.domain.Order;
 
 public interface OrderService {
     Order createOrder(Integer pid);
+    void save(Order order);
 }

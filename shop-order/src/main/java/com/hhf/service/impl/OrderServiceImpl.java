@@ -41,4 +41,9 @@ public class OrderServiceImpl implements OrderService {
         return order;
     }
 
+    @Override
+    public void save(Order order) {
+        orderDao.save(order);
+    }
+
 }
